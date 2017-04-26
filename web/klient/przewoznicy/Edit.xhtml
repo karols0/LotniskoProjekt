@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrzewoznicyEditDlg" widgetVar="PrzewoznicyEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPrzewoznicyTitle}">
+            <h:form id="PrzewoznicyEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{przewoznicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_nazwa}" for="nazwa" />
+                        <p:inputText id="nazwa" value="#{przewoznicyController.selected.nazwa}" title="#{bundle.EditPrzewoznicyTitle_nazwa}" />
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_adresFirmy}" for="adresFirmy" />
+                        <p:inputText id="adresFirmy" value="#{przewoznicyController.selected.adresFirmy}" title="#{bundle.EditPrzewoznicyTitle_adresFirmy}" />
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{przewoznicyController.selected.telefon}" title="#{bundle.EditPrzewoznicyTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_iloscSamolotow}" for="iloscSamolotow" />
+                        <p:inputText id="iloscSamolotow" value="#{przewoznicyController.selected.iloscSamolotow}" title="#{bundle.EditPrzewoznicyTitle_iloscSamolotow}" />
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{przewoznicyController.selected.login}" title="#{bundle.EditPrzewoznicyTitle_login}" />
+                        <p:outputLabel value="#{bundle.EditPrzewoznicyLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{przewoznicyController.selected.haslo}" title="#{bundle.EditPrzewoznicyTitle_haslo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{przewoznicyController.update}" value="#{bundle.Save}" update="display,:PrzewoznicyListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PrzewoznicyEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PrzewoznicyEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

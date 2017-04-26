@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <ui:composition template="/templateIndex.xhtml">
+    <ui:define name="body">
+        <h:form>
+		<h3>JSF Login Logout</h3>
+		<h:outputText value="Username" />
+                <h:inputText id="username" value="#{loginController.login}"></h:inputText>
+		<h:message for="username"></h:message>
+		<br></br><br></br>
+		
+		<h:outputText value="Password" />
+                <h:inputSecret id="password" value="#{loginController.haslo}"></h:inputSecret>
+		<h:message for="password"></h:message>
+		<br></br><br></br>
+		
+                <h:commandButton action="#{loginController.validate()}"
+			value="Login"></h:commandButton>
+	</h:form>
+        </ui:define>
+        </ui:composition>
+</html>
+

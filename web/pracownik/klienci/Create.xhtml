@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="KlienciCreateDlg" widgetVar="KlienciCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateKlienciTitle}">
+            <h:form id="KlienciCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{klienciController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{klienciController.selected.imie}" title="#{bundle.CreateKlienciTitle_imie}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{klienciController.selected.nazwisko}" title="#{bundle.CreateKlienciTitle_nazwisko}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_adres}" for="adres" />
+                        <p:inputText id="adres" value="#{klienciController.selected.adres}" title="#{bundle.CreateKlienciTitle_adres}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{klienciController.selected.telefon}" title="#{bundle.CreateKlienciTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_formaPlatnosci}" for="formaPlatnosci" />
+                        <p:inputText id="formaPlatnosci" value="#{klienciController.selected.formaPlatnosci}" title="#{bundle.CreateKlienciTitle_formaPlatnosci}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{klienciController.selected.login}" title="#{bundle.CreateKlienciTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreateKlienciLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{klienciController.selected.haslo}" title="#{bundle.CreateKlienciTitle_haslo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{klienciController.create}" value="#{bundle.Save}" update="display,:KlienciListForm:datalist,:growl" oncomplete="handleSubmit(args,'KlienciCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="KlienciCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

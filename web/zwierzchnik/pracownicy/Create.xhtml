@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PracownicyCreateDlg" widgetVar="PracownicyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePracownicyTitle}">
+            <h:form id="PracownicyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pracownicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{pracownicyController.selected.imie}" title="#{bundle.CreatePracownicyTitle_imie}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{pracownicyController.selected.nazwisko}" title="#{bundle.CreatePracownicyTitle_nazwisko}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{pracownicyController.selected.telefon}" title="#{bundle.CreatePracownicyTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_numerKontaBankowego}" for="numerKontaBankowego" />
+                        <p:inputText id="numerKontaBankowego" value="#{pracownicyController.selected.numerKontaBankowego}" title="#{bundle.CreatePracownicyTitle_numerKontaBankowego}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_pensja}" for="pensja" />
+                        <p:inputText id="pensja" value="#{pracownicyController.selected.pensja}" title="#{bundle.CreatePracownicyTitle_pensja}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_idZwierzchnika}" for="idZwierzchnika" />
+                        <p:inputText id="idZwierzchnika" value="#{pracownicyController.selected.idZwierzchnika}" title="#{bundle.CreatePracownicyTitle_idZwierzchnika}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{pracownicyController.selected.login}" title="#{bundle.CreatePracownicyTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{pracownicyController.selected.haslo}" title="#{bundle.CreatePracownicyTitle_haslo}" />
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_idGrafiku}" for="idGrafiku" />
+                        <p:selectOneMenu id="idGrafiku" value="#{pracownicyController.selected.idGrafiku}" >
+                            <f:selectItems value="#{grafikController.itemsAvailableSelectOne}"
+                                           var="idGrafikuItem"
+                                           itemValue="#{idGrafikuItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_idSektora}" for="idSektora" />
+                        <p:selectOneMenu id="idSektora" value="#{pracownicyController.selected.idSektora}" >
+                            <f:selectItems value="#{sektoryController.itemsAvailableSelectOne}"
+                                           var="idSektoraItem"
+                                           itemValue="#{idSektoraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePracownicyLabel_idStanowiska}" for="idStanowiska" />
+                        <p:selectOneMenu id="idStanowiska" value="#{pracownicyController.selected.idStanowiska}" >
+                            <f:selectItems value="#{stanowiskaController.itemsAvailableSelectOne}"
+                                           var="idStanowiskaItem"
+                                           itemValue="#{idStanowiskaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pracownicyController.create}" value="#{bundle.Save}" update="display,:PracownicyListForm:datalist,:growl" oncomplete="handleSubmit(args,'PracownicyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PracownicyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

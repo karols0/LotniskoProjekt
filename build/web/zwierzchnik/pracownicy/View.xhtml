@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PracownicyViewDlg" widgetVar="PracownicyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPracownicyTitle}">
+            <h:form id="PracownicyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pracownicyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_idPracownika}"/>
+                        <h:outputText value="#{pracownicyController.selected.idPracownika}" title="#{bundle.ViewPracownicyTitle_idPracownika}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_imie}"/>
+                        <h:outputText value="#{pracownicyController.selected.imie}" title="#{bundle.ViewPracownicyTitle_imie}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_nazwisko}"/>
+                        <h:outputText value="#{pracownicyController.selected.nazwisko}" title="#{bundle.ViewPracownicyTitle_nazwisko}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_telefon}"/>
+                        <h:outputText value="#{pracownicyController.selected.telefon}" title="#{bundle.ViewPracownicyTitle_telefon}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_numerKontaBankowego}"/>
+                        <h:outputText value="#{pracownicyController.selected.numerKontaBankowego}" title="#{bundle.ViewPracownicyTitle_numerKontaBankowego}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_pensja}"/>
+                        <h:outputText value="#{pracownicyController.selected.pensja}" title="#{bundle.ViewPracownicyTitle_pensja}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_idZwierzchnika}"/>
+                        <h:outputText value="#{pracownicyController.selected.idZwierzchnika}" title="#{bundle.ViewPracownicyTitle_idZwierzchnika}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_login}"/>
+                        <h:outputText value="#{pracownicyController.selected.login}" title="#{bundle.ViewPracownicyTitle_login}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_haslo}"/>
+                        <h:outputText value="#{pracownicyController.selected.haslo}" title="#{bundle.ViewPracownicyTitle_haslo}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_idGrafiku}"/>
+                        <h:outputText value="#{pracownicyController.selected.idGrafiku}" title="#{bundle.ViewPracownicyTitle_idGrafiku}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_idSektora}"/>
+                        <h:outputText value="#{pracownicyController.selected.idSektora}" title="#{bundle.ViewPracownicyTitle_idSektora}"/>
+                        <h:outputText value="#{bundle.ViewPracownicyLabel_idStanowiska}"/>
+                        <h:outputText value="#{pracownicyController.selected.idStanowiska}" title="#{bundle.ViewPracownicyTitle_idStanowiska}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PracownicyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

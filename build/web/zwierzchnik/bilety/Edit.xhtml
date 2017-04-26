@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BiletyEditDlg" widgetVar="BiletyEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBiletyTitle}">
+            <h:form id="BiletyEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{biletyController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBiletyLabel_klasa}" for="klasa" />
+                        <p:inputText id="klasa" value="#{biletyController.selected.klasa}" title="#{bundle.EditBiletyTitle_klasa}" />
+                        <p:outputLabel value="#{bundle.EditBiletyLabel_cena}" for="cena" />
+                        <p:inputText id="cena" value="#{biletyController.selected.cena}" title="#{bundle.EditBiletyTitle_cena}" />
+                        <p:outputLabel value="#{bundle.EditBiletyLabel_czyZaplacono}" for="czyZaplacono" />
+                        <p:selectBooleanCheckbox id="czyZaplacono" value="#{biletyController.selected.czyZaplacono}" />
+                        <p:outputLabel value="#{bundle.EditBiletyLabel_idKlienta}" for="idKlienta" />
+                        <p:selectOneMenu id="idKlienta" value="#{biletyController.selected.idKlienta}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{klienciController.itemsAvailableSelectOne}"
+                                           var="idKlientaItem"
+                                           itemValue="#{idKlientaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditBiletyLabel_idLotu}" for="idLotu" />
+                        <p:selectOneMenu id="idLotu" value="#{biletyController.selected.idLotu}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lotyController.itemsAvailableSelectOne}"
+                                           var="idLotuItem"
+                                           itemValue="#{idLotuItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{biletyController.update}" value="#{bundle.Save}" update="display,:BiletyListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BiletyEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BiletyEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

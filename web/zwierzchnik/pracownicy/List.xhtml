@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPracownicyTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="PracownicyListForm">
+                <p:panel header="#{bundle.ListPracownicyTitle}">
+                    <p:dataTable id="datalist" value="#{pracownicyController.items}" var="item"
+                                 selectionMode="single" selection="#{pracownicyController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idPracownika}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_idPracownika}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPracownika}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_imie}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imie}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_nazwisko}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nazwisko}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_telefon}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefon}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_numerKontaBankowego}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numerKontaBankowego}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_pensja}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pensja}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_idZwierzchnika}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idZwierzchnika}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_login}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.login}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_haslo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.haslo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_idGrafiku}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGrafiku}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_idSektora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSektora}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPracownicyTitle_idStanowiska}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idStanowiska}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pracownicyController.prepareCreate}" update=":PracownicyCreateForm" oncomplete="PF('PracownicyCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PracownicyViewForm" oncomplete="PF('PracownicyViewDialog').show()" disabled="#{empty pracownicyController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PracownicyEditForm" oncomplete="PF('PracownicyEditDialog').show()" disabled="#{empty pracownicyController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{pracownicyController.destroy}" update=":growl,datalist" disabled="#{empty pracownicyController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SamolotyViewDlg" widgetVar="SamolotyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSamolotyTitle}">
+            <h:form id="SamolotyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{samolotyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSamolotyLabel_idSamolotu}"/>
+                        <h:outputText value="#{samolotyController.selected.idSamolotu}" title="#{bundle.ViewSamolotyTitle_idSamolotu}"/>
+                        <h:outputText value="#{bundle.ViewSamolotyLabel_iloscMiejsc}"/>
+                        <h:outputText value="#{samolotyController.selected.iloscMiejsc}" title="#{bundle.ViewSamolotyTitle_iloscMiejsc}"/>
+                        <h:outputText value="#{bundle.ViewSamolotyLabel_idPrzewoznika}"/>
+                        <h:outputText value="#{samolotyController.selected.idPrzewoznika}" title="#{bundle.ViewSamolotyTitle_idPrzewoznika}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SamolotyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

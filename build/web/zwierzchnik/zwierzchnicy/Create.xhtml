@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZwierzchnicyCreateDlg" widgetVar="ZwierzchnicyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateZwierzchnicyTitle}">
+            <h:form id="ZwierzchnicyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{zwierzchnicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateZwierzchnicyLabel_iloscPodwladnych}" for="iloscPodwladnych" />
+                        <p:inputText id="iloscPodwladnych" value="#{zwierzchnicyController.selected.iloscPodwladnych}" title="#{bundle.CreateZwierzchnicyTitle_iloscPodwladnych}" />
+                        <p:outputLabel value="#{bundle.CreateZwierzchnicyLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{zwierzchnicyController.selected.login}" title="#{bundle.CreateZwierzchnicyTitle_login}" />
+                        <p:outputLabel value="#{bundle.CreateZwierzchnicyLabel_haslo}" for="haslo" />
+                        <p:inputText id="haslo" value="#{zwierzchnicyController.selected.haslo}" title="#{bundle.CreateZwierzchnicyTitle_haslo}" />
+                        <p:outputLabel value="#{bundle.CreateZwierzchnicyLabel_idPracownika}" for="idPracownika" />
+                        <p:selectOneMenu id="idPracownika" value="#{zwierzchnicyController.selected.idPracownika}" >
+                            <f:selectItems value="#{pracownicyController.itemsAvailableSelectOne}"
+                                           var="idPracownikaItem"
+                                           itemValue="#{idPracownikaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zwierzchnicyController.create}" value="#{bundle.Save}" update="display,:ZwierzchnicyListForm:datalist,:growl" oncomplete="handleSubmit(args,'ZwierzchnicyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ZwierzchnicyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
